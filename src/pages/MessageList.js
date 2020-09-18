@@ -5,6 +5,7 @@ import Message from "../components/message/Message";
 
 class MessageList extends React.Component {
   state = { messages: [] };
+
   componentDidMount() {
     api
       .getAllMessages()
