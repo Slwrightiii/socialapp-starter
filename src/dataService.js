@@ -1,5 +1,7 @@
 import axios from "axios";
 
+let loginData = JSON.parse(localStorage.getItem("login"));
+
 class DataService {
   constructor(
     url = "https://socialapp-api.herokuapp.com",
@@ -17,11 +19,13 @@ class DataService {
     return this.client.get(`${this.url}/messages?limit=${limit}`);
   }
 
-  getUserMessages(username, limit = 20) {
-    return this.client.get(
-      `${this.url}/messages?username=${username}limit=${limit}`
+  postUserMessages(message) {
+    return this.client.post(
+      `${this.url}/messages`,
+      { text: message },
+      { headers: { Authorization: `Bearer ${loginData.result.token}` } }
     );
   }
 }
 
-export default new DataService();
+export default DataService;

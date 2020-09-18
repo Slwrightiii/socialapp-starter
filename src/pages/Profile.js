@@ -1,17 +1,17 @@
 import React from "react";
 import Menu from "../components/menu/Menu";
 import { userIsAuthenticated } from "../redux/HOCs";
-import api from "../dataService";
-import Message from "../components/message/Message";
+import DataService from "../dataService";
+import UserMessage from "../components/message/UserMessage";
 
 class Profile extends React.Component {
   state = { messages: [] };
 
-  componentDidMount() {
-    api
-      .getUserMessages()
-      .then((response) => this.setState({ messages: response.data.messages }));
-  }
+  // componentDidMount() {
+  //   new DataService()
+  //     .postUserMessages()
+  //     .then((response) => this.setState({ messages: response.data.messages }));
+  // }
 
   render() {
     // if (this.state.messages.length === 0) {
@@ -27,6 +27,7 @@ class Profile extends React.Component {
       <div className="Profile">
         <Menu isAuthenticated={this.props.isAuthenticated} />
         <h2>Profile</h2>
+        <UserMessage />
       </div>
     );
   }
