@@ -3,6 +3,8 @@ import Menu from "../components/menu/Menu";
 import { userIsAuthenticated } from "../redux/HOCs";
 import DataService from "../dataService";
 import UserMessage from "../components/message/UserMessage";
+import GetUserAndPic from "../components/getUserAndPic/GetUserAndPic";
+import PutPic from "../components/putPic/PutPic";
 
 class Profile extends React.Component {
   state = { messages: [] };
@@ -28,6 +30,10 @@ class Profile extends React.Component {
         <Menu isAuthenticated={this.props.isAuthenticated} />
         <h2>Profile</h2>
         <UserMessage />
+        <br />
+        <GetUserAndPic />
+        <br />
+        <PutPic />
       </div>
     );
   }
