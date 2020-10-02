@@ -8,6 +8,7 @@ class GetUserAndPic extends React.Component {
     super(props);
     this.client = new DataService();
     this.state = {
+      usernameQuery: "",
       user: {
         username: "",
         displayName: "",
@@ -22,26 +23,21 @@ class GetUserAndPic extends React.Component {
 
   getUsernameAndPic = (username) => {
     return this.client.getSingleUser(username).then((response) => {
-      this.setState({
-        user: response.data,
-      });
-      console.log(this.state.user);
+      this.setState({ user: response.data.user }, () =>
+        console.log(this.state.user)
+      );
     });
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.getUsernameAndPic(this.state.username);
+    this.getUsernameAndPic(this.state.usernameQuery);
   };
 
   handleChange = (event) => {
     event.preventDefault();
     this.setState({ [event.target.name]: event.target.value });
   };
-
-  componentDidMount() {
-    this.getUsernameAndPic();
-  }
 
   render() {
     return (
@@ -50,7 +46,7 @@ class GetUserAndPic extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"
-            name="username"
+            name="usernameQuery"
             required
             onChange={this.handleChange}
           />
@@ -59,10 +55,16 @@ class GetUserAndPic extends React.Component {
           </Button>
           <br />
           <div>
-            <h3>Username: {this.state.user.username}</h3>
+            <h3>User Found: {this.state.user.username}</h3>
           </div>
         </form>
-        <img src={this.state.user.pictureLocation} alt="Profile Photo" />
+        <img
+          src={
+            "https://socialapp-api.herokuapp.com" +
+            this.state.user.pictureLocation
+          }
+          alt="Profile Photo"
+        />
         <br />
         <br />
         <div>About : </div>
