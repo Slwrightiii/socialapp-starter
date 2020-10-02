@@ -1,16 +1,25 @@
 import React from "react";
-import Menu from "../components/menu/Menu";
-import Message from "../components/message/Message";
-import DataService from "../dataService";
 
 class GetaMessage extends React.Component {
-  state = { username };
+  state = { messages: [] };
 
   componentDidMount() {
     new DataService()
       .getAMessage()
-      .then((response) => this.setState({ username: response.data.messages }));
+      .then((response) => this.setState({ messages: response.data.messages }));
   }
+
+  // getAmessage (username){
+  //   return this.client.then(response)=> { this.setState({
+  //     user: response.data
+  //   }) messages
+  //     .filter((message) => message.includes("username"))
+  //     .map((filteredMessage) => (
+  //       <li>{filteredMessage}</li>
+  //     ))}
+
+  // }
+
   render() {
     if (this.state.messages.length === 0) {
       return (
@@ -20,7 +29,6 @@ class GetaMessage extends React.Component {
         </div>
       );
     }
-    return <div className="MyMessages"></div>;
   }
 }
 export default GetaMessage;

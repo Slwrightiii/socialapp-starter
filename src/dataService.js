@@ -19,7 +19,8 @@ class DataService {
   }
 
   // getAMessage(username) {
-  //   return this.client.get(`${this.url}/messages/${username}`);
+  // {username},
+  //   return this.client.get(`${this.url}/messages/${messageId}`);
   // }
 
   postUserMessages(message) {

@@ -2,7 +2,6 @@ import React from "react";
 import Menu from "../components/menu/Menu";
 import { userIsAuthenticated } from "../redux/HOCs";
 import UserMessage from "../components/message/UserMessage";
-import DeleteMessage from "../components/message/DeleteMessage";
 
 class Profile extends React.Component {
   state = { messages: [] };

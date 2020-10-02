@@ -24,9 +24,12 @@ class DeleteMessage extends React.Component {
     if (this.props.username === undefined) {
       return;
     }
-    const deleteButton = <div></div>;
-    const currentUser = localStorage.getItem("login");
-    if (this.props.username === currentUser.result.username) {
+    let deleteButton = <div></div>;
+
+    const currentUser = JSON.parse(localStorage.getItem("login")).result
+      .username;
+
+    if (this.props.username === currentUser) {
       deleteButton = (
         <button type="submit" onClick={this.handleDelete}>
           Delete
